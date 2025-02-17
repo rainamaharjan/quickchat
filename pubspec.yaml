@@ -1,7 +1,9 @@
 name: quickchat
 description: "Worldlink messaging system - chat inbox"
 version: 0.0.1
-homepage:
+repository: https://github.com/rainamaharjan/quickchat
+homepage: https://github.com/rainamaharjan/quickchat
+license : MIT
 
 environment:
   sdk: '>=3.4.3 <4.0.0'
