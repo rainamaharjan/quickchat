@@ -1,5 +1,5 @@
 name: quickchatapp
-description: "Worldlink messaging system - chat inbox"
+description: "WorldLink messaging system - chat inbox"
 version: 0.0.1
 
 environment:
@@ -9,8 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  quickchat:
-    path: ../quickchat
+  quickchat: 1.0.0
+#  quickchat:
+#    path: ../quickchat
 
 dev_dependencies:
   flutter_test:
