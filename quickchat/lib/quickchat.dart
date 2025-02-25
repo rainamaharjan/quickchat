@@ -1,4 +1,5 @@
-import 'dart:convert';
+library quickchat;
+
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -7,22 +8,21 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart'
     as webview_flutter_android;
 
-class Quickchat extends StatefulWidget {
+class QuickChat extends StatefulWidget {
   final String? url;
 
-  Quickchat({
+  QuickChat({
     super.key,
     this.url,
   });
 
   @override
-  State<Quickchat> createState() => QuickchatState();
+  State<QuickChat> createState() => QuickChatState();
 }
 
-class QuickchatState extends State<Quickchat> {
+class QuickChatState extends State<QuickChat> {
   late final WebViewController _controller;
   WebViewController? _externalController;
-  String widgetUrl = 'https://app.quickconnect.biz/mobile-widget';
 
   @override
   void initState() {
@@ -39,7 +39,6 @@ class QuickchatState extends State<Quickchat> {
       ..addJavaScriptChannel(
         'FlutterWebView',
         onMessageReceived: (JavaScriptMessage message) {
-          print("Received message from WebView: ${message.message}");
           if (message.message == "pickFile") {
             pickFile();
           }
@@ -55,9 +54,6 @@ class QuickchatState extends State<Quickchat> {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {
       File file = File(result.files.single.path!);
-      print('File picked: ${file.path}');
-    } else {
-      print("File picking cancelled");
     }
   }
 
@@ -72,7 +68,7 @@ class QuickchatState extends State<Quickchat> {
   /// Handles navigation requests within the WebView
   Future<NavigationDecision> _handleNavigationRequest(
       NavigationRequest request) async {
-    if (!request.url.contains(widgetUrl)) {
+    if (!request.url.contains(widget.url ?? '')) {
       _showExternalWebView(request.url);
       return NavigationDecision.prevent;
     }
@@ -125,14 +121,6 @@ class QuickchatState extends State<Quickchat> {
     }
 
     return [];
-  }
-
-  Map<String, dynamic> parseJson(String message) {
-    try {
-      return jsonDecode(message) as Map<String, dynamic>;
-    } catch (e) {
-      return {};
-    }
   }
 
   /// Determines the file type based on MIME types
@@ -217,21 +205,5 @@ class QuickchatState extends State<Quickchat> {
   @override
   Widget build(BuildContext context) {
     return WebViewWidget(controller: _controller);
-  }
-
-  /// Injects JavaScript into the WebView
-  Future<void> injectJavaScript(String script) async {
-    await _controller.runJavaScript(script);
-  }
-
-  /// Reloads the WebView
-  Future<void> reload() async {
-    await _controller.reload();
-  }
-
-  /// Clears the local storage of the WebView
-  Future<void> clearLocalStorage() async {
-    await _controller.runJavaScript('localStorage.clear();');
-    await reload();
   }
 }

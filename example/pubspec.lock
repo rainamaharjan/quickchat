@@ -179,11 +179,10 @@ packages:
   quickchat:
     dependency: "direct main"
     description:
-      name: quickchat
-      sha256: e36639695e79d16b25f290270d5c13dc66116365fdd4c69706c29e217decd347
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
+      path: "../quickchat"
+      relative: true
+    source: path
+    version: "1.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

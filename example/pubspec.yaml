@@ -9,9 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  quickchat: 1.0.0
-#  quickchat:
-#    path: ../quickchat
+  quickchat:
+    path: ../quickchat
 
 dev_dependencies:
   flutter_test:
