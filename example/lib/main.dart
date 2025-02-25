@@ -10,9 +10,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: Text('Test Chat',style: TextStyle(color: Colors.white),),backgroundColor: Colors.blueAccent,),
-          body: MyWebView(
-              title: 'Chat inbox', url: 'https://app.quickconnect.biz/')),
+          appBar: AppBar(title: Text('Chat Inbox',style: TextStyle(color: Colors.white),),backgroundColor: Colors.blueAccent,),
+          body: Quickchat( url: 'https://www.google.com/')),
     );
   }
 }
