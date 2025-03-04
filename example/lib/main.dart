@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quickchat/quickchat.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(title: Text('Chat Inbox',style: TextStyle(color: Colors.white),),
             backgroundColor: Colors.blueAccent,),
-          body: QuickChat( url: 'https://www.google.com/')),
+          body: Container()),
     );
   }
 }
